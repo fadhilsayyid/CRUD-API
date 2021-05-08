@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\ProductController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,11 @@ Route::get('products/{id}', [ProductController::class, 'show']);
 Route::post('products', [ProductController::class, 'store']);
 Route::put('products/{id}', [ProductController::class, 'update']);
 Route::delete('products/{id}', [ProductController::class, 'destroy']);
+
+Route::get('user', [LoginController::class, "getUser"]);
+Route::post('add-user', [LoginController::class, "addUser"]);
+Route::post('login', [LoginController::class, "login"]);
+Route::middleware('auth:api')->group(function(){
+    Route::get('profile', [LoginController::class, "profile"]);
+});
+Route::get('delete/{id}', [LoginController::class, "delete"]);
