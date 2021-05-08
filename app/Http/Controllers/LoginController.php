@@ -43,4 +43,8 @@ class LoginController extends Controller
         User::find($id)->delete();
         return response()->json(["status"=>"success","result"=>[],"message"=>"delete successfully"]);
     }
+
+    public function importForm(){
+        return view('import-form');
+    }
 }
