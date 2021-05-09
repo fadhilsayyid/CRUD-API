@@ -11,20 +11,25 @@
 <body>
     <section style="padding-top:60px;">
         <div class="container">
-            <div class="row">
+            <div class="row justify-content-center">
                 <div class="col-md-6 offset-md-3">
                     <div class="card">
-                        <div class="card-header">
-                            Import
-                        </div>
+                        <div class="card-header">Import</div>
+                        
                         <div class="card-body">
+                            @if(session('status'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
+
                             <form method="POST" enctype="multipart/form-data" action="{{route('user.import')}}">
                                 @csrf
                                 <div class="form-group">
                                     <label for="title">Choose CSV</label>
                                     <input type="file" name="file" class="form-control" />
                                 </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Import</button>
                                 <a class="btn btn-success" href="{{ url('userList')}}">User List</a>
                             </form> 
                         </div>

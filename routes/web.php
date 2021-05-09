@@ -21,6 +21,4 @@ Route::get('/import-form',[LoginController::class,'importForm']);
 
 Route::post('/import',[LoginController::class,'import'])->name('user.import'); 
 
-Route::post('/export',[LoginController::class,'export'])->name('user.export'); 
-
 Route::get('/userList',[LoginController::class,'userList']);
