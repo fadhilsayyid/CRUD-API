@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\models\User;
 use Auth;
+use Excel;
+use App\Imports\UserImport;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -46,5 +49,15 @@ class LoginController extends Controller
 
     public function importForm(){
         return view('import-form');
+    }
+
+    public function import(Request $request){
+        Excel::import(new UserImport,$request->file);
+        return "Record are imported successfully!";
+    }
+
+    public function userList(Request $request){
+        $users = DB::table('users')->paginate(2);
+        return view('userList', ['users'=>$users]);
     }
 }
